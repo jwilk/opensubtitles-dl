@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+set -e -u
+
+usage()
+{
+    printf 'Usage: %s FILE URL\n' "${0##*/}"
+}
+
+if [ $# -ge 1 ] && ([[ $1 = '-h' ]] || [[ $1 = '--help' ]])
+then
+    usage
+    exit
+fi
+
+if [ $# -ne 2 ]
+then
+    usage >&2
+    exit 1
+fi
+
+file="$1"
+url="$2"
+
+stat -- "$file" > /dev/null
+target_srt="${file%.*}.srt"
+[[ "$url" =~ /([0-9]+)/ ]]
+id=${BASH_REMATCH[1]}
+dl_url="https://dl.opensubtitles.org/en/download/sub/$id"
+tmpdir=$(mktemp -t -d opensubtitles-dl.XXXXXX)
+user_agent='Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0'
+wget -q --user-agent "$user_agent" --referer "$url" "$dl_url" -O "$tmpdir/subtitles.zip"
+zipinfo=$(zipinfo -1 "$tmpdir/subtitles.zip")
+while read -r line
+do
+    if [[ $line =~ ^([^-].*[.](txt|srt))$ ]]
+    then
+        source_srt="$line"
+        break
+    fi
+done <<< "$zipinfo"
+unzip -p "$tmpdir/subtitles.zip" "$source_srt" > "$target_srt"
+rm -rf "$tmpdir"
+printf '%s -> %s\n' "$dl_url" "$target_srt" >&2
+
+# vim:ts=4 sts=4 sw=4 et
