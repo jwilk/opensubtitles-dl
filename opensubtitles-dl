@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Copyright © 2018 Jakub Wilk <jwilk@jwilk.net>
+# SPDX-License-Identifier: MIT
+
 set -e -u
 
 usage()
