@@ -1,0 +1,21 @@
+dist: trusty
+sudo: false
+language: generic
+addons:
+  apt:
+    packages:
+    - unzip
+install:
+- python -m pip install --user pygments restructuredtext-lint
+before_script:
+- wget --version
+script:
+- shellcheck opensubtitles-dl
+- restructuredtext-lint --encoding=UTF-8 README
+- PATH=".:$PATH"
+- touch night-of-the-living-dead.mp4
+- opensubtitles-dl --help
+- opensubtitles-dl night-of-the-living-dead.mp4 https://www.opensubtitles.org/en/subtitles/4025513/night-of-the-living-dead-en
+- grep -B1 "They're coming to" night-of-the-living-dead.srt
+
+# vim:ts=2 sts=2 sw=2 et
