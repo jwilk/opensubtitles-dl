@@ -23,4 +23,14 @@ https://www.opensubtitles.org/.
    00:06:10,852 --> 00:06:14,117
    They're coming to get you, Barbra.
 
+Prerequisites
+=============
+
+* bash
+* wget
+* UnZip_
+
+.. _UnZip:
+   http://infozip.sourceforge.net/UnZip.html
+
 .. vim:ft=rst ts=3 sts=3 sw=3 et
