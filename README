@@ -1,3 +1,9 @@
+Overview
+========
+
+**opensubtitles-dl** downloads and unpacks subtitles from
+https://www.opensubtitles.org/.
+
 .. code:: console
 
    $ ls -1 night-of-the-living-dead.*
