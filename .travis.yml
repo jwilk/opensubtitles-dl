@@ -8,7 +8,7 @@ addons:
 install:
 - python -m pip install --user pygments restructuredtext-lint
 before_script:
-- wget --version
+- curl --version
 script:
 - shellcheck opensubtitles-dl
 - restructuredtext-lint --encoding=UTF-8 README

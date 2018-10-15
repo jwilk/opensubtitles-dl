@@ -27,7 +27,7 @@ Prerequisites
 =============
 
 * bash
-* wget
+* curl
 * UnZip_
 
 .. _UnZip:
