@@ -10,7 +10,7 @@ usage()
     printf 'Usage: %s FILE URL\n' "${0##*/}"
 }
 
-if [ $# -ge 1 ] && ([[ $1 = '-h' ]] || [[ $1 = '--help' ]])
+if [ $# -ge 1 ] && { [[ $1 = '-h' ]] || [[ $1 = '--help' ]]; }
 then
     usage
     exit
