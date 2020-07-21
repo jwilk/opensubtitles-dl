@@ -8,9 +8,9 @@ echo 1..2
 base="${0%/*}/.."
 prog="$base/opensubtitles-dl"
 prog=$(readlink -f "$prog")
-if [ -z "${OPENSUBSTITLES_DL_ONLINE_TESTS-}" ]
+if [ -z "${OPENSUBTITLES_DL_ONLINE_TESTS-}" ]
 then
-    echo 'OPENSUBSTITLES_DL_ONLINE_TESTS is not set' >&2
+    echo 'OPENSUBTITLES_DL_ONLINE_TESTS is not set' >&2
     printf 'not ok %d\n' 1 2
     exit 1
 fi
