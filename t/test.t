@@ -6,8 +6,8 @@
 set -e -u
 echo 1..2
 base="${0%/*}/.."
+base=$(cd -P -- "$base" && pwd)
 prog="$base/opensubtitles-dl"
-prog=$(readlink -f "$prog")
 if [ -z "${OPENSUBTITLES_DL_ONLINE_TESTS-}" ]
 then
     echo 'OPENSUBTITLES_DL_ONLINE_TESTS is not set' >&2
