@@ -47,7 +47,7 @@ then
     printf '<%s>: subtitle file not found\n' >&2 "$dl_url"
     exit 1
 fi
-source_srt=${source_srt//[[]/[[]}
+source_srt=${source_srt//[[]/[[]} # hey, Vim: ]]}
 source_srt=${source_srt//[*]/[*]}
 source_srt=${source_srt//[?]/[?]}
 unzip -p "$tmpdir/subtitles.zip" "$source_srt" > "$target_srt"
