@@ -31,7 +31,7 @@ target_srt="${file%.*}.srt"
 id=${BASH_REMATCH[1]}
 dl_url="https://dl.opensubtitles.org/en/download/sub/$id"
 tmpdir=$(mktemp -t -d opensubtitles-dl.XXXXXX)
-user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0'
+user_agent='Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0'
 curl --silent --fail --show-error --user-agent "$user_agent" --referer "$url" "$dl_url" > "$tmpdir/subtitles.zip"
 zipinfo=$(zipinfo -1 "$tmpdir/subtitles.zip")
 while read -r line
