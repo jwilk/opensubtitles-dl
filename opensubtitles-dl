@@ -55,7 +55,7 @@ headers=$(curl --silent --fail --show-error -L --max-redirs 0 --user-agent "$use
 zipinfo=$(zipinfo -1 "$tmpdir/subtitles.zip")
 while read -r line
 do
-    if [[ $line =~ ^([^-].*[.](txt|srt|ass))$ ]]
+    if [[ $line =~ ^([^-].*[.](txt|srt|ass|sub))$ ]]
     then
         source_srt="$line"
         break
