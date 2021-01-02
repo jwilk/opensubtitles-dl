@@ -27,7 +27,7 @@ Prerequisites
 =============
 
 * bash
-* curl
+* curl (≥ 7.18.2)
 * UnZip_
 
 .. _UnZip:
