@@ -32,14 +32,10 @@ id=${BASH_REMATCH[1]}
 dl_url="https://dl.opensubtitles.org/en/download/sub/$id"
 tmpdir=$(mktemp -t -d opensubtitles-dl.XXXXXX)
 user_agent='Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0'
-headers=$(curl --silent --fail --show-error -L --max-redirs 0 --user-agent "$user_agent" --referer "$url" "$dl_url" -o "$tmpdir/subtitles.zip" --dump-header -) || {
-    location=$(LC_ALL=C grep -i ^location: <<< "$headers")
-    location=${location#*:}
-    location=${location#[ 	]}
-    location=${location%$'\r'}
+location=$(curl --silent --fail --show-error -L --max-redirs 0 --user-agent "$user_agent" --referer "$url" "$dl_url" -o "$tmpdir/subtitles.zip" --write-out '%{redirect_url}') || {
     printf '<%s>: ' "$dl_url" >&2
     case $location in
-        /msg-dmca)
+        */msg-dmca)
             printf 'access denied (DMCA)' >&2
             ;;
         */captcha2/*)
