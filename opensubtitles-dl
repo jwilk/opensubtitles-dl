@@ -41,6 +41,9 @@ location=$(curl --silent --fail --show-error -L --max-redirs 0 --user-agent "$us
         */captcha2/*)
             printf 'too many requests (captcha)' >&2
             ;;
+        '')
+            printf 'download failed' >&2
+            ;;
         *)
             printf 'unexpected redirect to <%s>' "$location" >&2
             ;;
