@@ -5,9 +5,11 @@
 
 set -e -u
 
+prog="${0##*/}"
+
 usage()
 {
-    printf 'Usage: %s FILE URL\n' "${0##*/}"
+    printf 'Usage: %s FILE URL\n' "$prog"
 }
 
 if [ $# -ge 1 ] && { [[ $1 = '-h' ]] || [[ $1 = '--help' ]]; }
@@ -28,7 +30,7 @@ url="$2"
 stat -- "$file" > /dev/null
 target_srt="${file%.*}.srt"
 [[ "$url" =~ /([0-9]+)/ ]] || {
-    printf '%s: cannot parse URL: %s\n' "${0##*/}" "$url" >&2
+    printf '%s: cannot parse URL: %s\n' "$prog" "$url" >&2
     exit 1
 }
 id=${BASH_REMATCH[1]}
