@@ -27,7 +27,10 @@ url="$2"
 
 stat -- "$file" > /dev/null
 target_srt="${file%.*}.srt"
-[[ "$url" =~ /([0-9]+)/ ]]
+[[ "$url" =~ /([0-9]+)/ ]] || {
+    printf '%s: cannot parse URL: %s\n' "${0##*/}" "$url" >&2
+    exit 1
+}
 id=${BASH_REMATCH[1]}
 dl_url="https://dl.opensubtitles.org/en/download/sub/$id"
 tmpdir=$(mktemp -t -d opensubtitles-dl.XXXXXX)
