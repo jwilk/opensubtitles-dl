@@ -59,11 +59,13 @@ location=$(curl --silent --fail --show-error -L --max-redirs 0 --user-agent "$us
 zipinfo=$(zipinfo -1 "$tmpdir/subtitles.zip")
 while read -r line
 do
-    if [[ $line =~ ^([^-].*[.](txt|srt|ass|sub))$ ]]
-    then
-        source_srt="$line"
-        break
-    fi
+    case $line in
+        -*)
+            continue;;
+        *.txt|*.srt|*.ass|*.sub)
+            source_srt=$line
+            break;;
+    esac
 done <<< "$zipinfo"
 if [ -z "${source_srt-}" ]
 then
