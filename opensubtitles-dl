@@ -62,7 +62,7 @@ do
     case $line in
         -*)
             continue;;
-        *.txt|*.srt|*.ass|*.sub)
+        *.txt|*.srt|*.ass|*.sub|*.ssa)
             source_srt=$line
             break;;
     esac
